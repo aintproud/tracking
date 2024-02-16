@@ -1,6 +1,4 @@
-{"level":40,"time":1708114784510,"pid":24460,"hostname":"ilua-228","msg":"SIGINT received"}
-{"level":30,"time":1708114788222,"pid":24619,"hostname":"ilua-228","msg":"Server listening on http://[::1]:3000"}
-{"level":40,"time":1708114805345,"pid":24619,"hostname":"ilua-228","msg":"SIGINT received"}
-{"level":30,"time":1708114814642,"pid":24876,"hostname":"ilua-228","msg":"Server listening on http://[::1]:3000"}
-{"level":40,"time":1708114833813,"pid":24876,"hostname":"ilua-228","msg":"SIGINT received"}
-{"level":30,"time":1708114836318,"pid":25036,"hostname":"ilua-228","msg":"Server listening on http://[::1]:3000"}
+{"level":40,"time":1708119101249,"pid":8413,"hostname":"ilua-228","msg":"SIGINT received"}
+{"level":30,"time":1708119119457,"pid":8634,"hostname":"ilua-228","msg":"Server listening on http://[::1]:3000"}
+{"level":40,"time":1708119131744,"pid":8634,"hostname":"ilua-228","msg":"SIGINT received"}
+{"level":30,"time":1708119133856,"pid":8793,"hostname":"ilua-228","msg":"Server listening on http://[::1]:3000"}

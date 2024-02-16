@@ -10,7 +10,9 @@ const transport = pino.transport({
     {
       target: 'pino-pretty',
       options: {
-        translateTime: 'SYS:yyyy-mm-dd HH:MM:ss.l',
+        ignore: 'pid,hostname',
+        levelFirst: true,
+        translateTime: 'SYS:yyyy-mm-dd HH:MM:ss',
         colorize: true,
       },
     },
