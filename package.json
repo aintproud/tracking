@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node src/index.mjs"
+    "start": "node src/index.mjs",
+    "dev": "nodemon --experimental-modules src/index.mjs"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +16,9 @@
   "dependencies": {
     "@fastify/websocket": "^8.3.1",
     "ajv": "^8.12.0",
-    "fastify": "^4.26.1"
+    "fastify": "^4.26.1",
+    "nodemon": "^3.0.3",
+    "pino": "^8.18.0",
+    "pino-pretty": "^10.3.1"
   }
 }

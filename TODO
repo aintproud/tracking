@@ -1,0 +1,17 @@
+TODO:
+  <!-- - make async_hooks session -->
+  * make alias
+  - make docker
+  - make db module
+  - make auth
+  <!-- - implement logger -->
+  <!-- - implement operational errors and errors handling -->
+  - make dev and prod envs
+  - make e2e tests
+  - make seeds
+  - make ci/cd
+  - refactor ws logic
+  - make readme
+  * make swagger docs (mb for ws)
+  * make k8s
+

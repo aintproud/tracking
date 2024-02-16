@@ -1,6 +1,6 @@
-import MessageFabric from './messageFabric.mjs';
-import Ajv from 'ajv';
-const ajv = new Ajv();
+import Ajv from 'ajv'
+import MessageFabric from './messageFabric.mjs'
+const ajv = new Ajv()
 function primaryValidation(message) {
   try {
     const json = JSON.parse(message)
