@@ -1,23 +1,12 @@
 import pino from 'pino'
-const transport = pino.transport({
-  targets: [
-    {
-      target: 'pino/file',
-      options: {
-        destination: `./logs/app.log`,
-      },
+
+export const logger = pino({
+  formatters: {
+    level: (label) => {
+      return { level: label.toLocaleUpperCase() }
     },
-    {
-      target: 'pino-pretty',
-      options: {
-        ignore: 'pid,hostname',
-        levelFirst: true,
-        translateTime: 'SYS:yyyy-mm-dd HH:MM:ss',
-        colorize: true,
-      },
-    },
-  ],
+  },
+  timestamp: () => `,"time":"${new Date().toISOString()}"`,
 })
-export const logger = pino(transport)
 
 export default logger

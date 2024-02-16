@@ -2,3 +2,4 @@
 {"level":30,"time":1708119119457,"pid":8634,"hostname":"ilua-228","msg":"Server listening on http://[::1]:3000"}
 {"level":40,"time":1708119131744,"pid":8634,"hostname":"ilua-228","msg":"SIGINT received"}
 {"level":30,"time":1708119133856,"pid":8793,"hostname":"ilua-228","msg":"Server listening on http://[::1]:3000"}
+{"level":40,"time":1708119208910,"pid":8793,"hostname":"ilua-228","msg":"SIGINT received"}
