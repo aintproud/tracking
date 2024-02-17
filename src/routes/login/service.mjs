@@ -1,6 +1,7 @@
-import { verifyHash } from 'modules/utils.mjs'
-import { createToken } from 'modules/jwt.mjs'
-import User from 'db/models/user.mjs'
+import User from "src/modules/db/models/user.mjs"
+import { createToken } from "src/modules/jwt.mjs"
+import { verifyHash } from "src/modules/utils.mjs"
+
 export async function getLoginHandler(req, res) {
   const { email, password } = req.body
   const user = await User.table

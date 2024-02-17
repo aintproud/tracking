@@ -1,4 +1,5 @@
 export const postLoginSchema = {
+  summary: 'Login a user',
   body: {
     type: 'object',
     properties: {
@@ -7,5 +8,23 @@ export const postLoginSchema = {
     },
     required: ['email', 'password'],
     additionalProperties: false,
-  }
+  },
+  response: {
+    200: {
+      type: 'object',
+      properties: {
+        token: { type: 'string' },
+      },
+      required: ['token'],
+      additionalProperties: false,
+    },
+    401: {
+      type: 'object',
+      properties: {
+        error: { type: 'string' },
+      },
+      required: ['error'],
+      additionalProperties: false,
+    },
+  },
 }

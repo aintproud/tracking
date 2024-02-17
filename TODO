@@ -14,7 +14,8 @@ TODO:
   <!-- * make alias -->
   <!-- - make location writing for concrete user -->
   <!-- - switch files locations -->
-  - fill swagger
+  <!-- - fill swagger -->
+  
   ? make postman collection
   - make ci/cd
   * make readme
