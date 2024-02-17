@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node src/index.mjs",
-    "dev": "nodemon --experimental-modules src/index.mjs"
+    "start": "node --loader esm-module-alias/loader --no-warnings src/index.mjs",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --config ./test/jest.config.json",
+    "dev": "nodemon --experimental-modules --loader esm-module-alias/loader --no-warnings src/index.mjs"
   },
   "keywords": [],
   "author": "",
@@ -15,11 +16,19 @@
     "nodemon": "^3.0.3",
     "pino-pretty": "^10.3.1"
   },
+  "aliases": {
+    "@root": ".",
+    "@src": "src"
+  },
   "dependencies": {
+    "@fastify/swagger": "^8.14.0",
+    "@fastify/swagger-ui": "^3.0.0",
     "@fastify/websocket": "^8.3.1",
     "ajv": "^8.12.0",
+    "esm-module-alias": "^2.1.0",
     "faker": "^5.5.3",
     "fastify": "^4.26.1",
+    "jest": "^29.7.0",
     "jsonwebtoken": "^9.0.2",
     "knex": "^3.1.0",
     "pg": "^8.11.3",

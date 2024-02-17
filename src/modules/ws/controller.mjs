@@ -25,16 +25,21 @@ function primaryValidation(message) {
 }
 
 export default async function (fastify) {
-  fastify.get('/', { 
-    websocket: true, preHandler: [asyncStorageBinding,jwtGuard]
-   }, (connection) => {
-    connection.socket.on('message', (message) => {
-      const json = primaryValidation(message)
-      if (!json) return connection.socket.send('wrong body')
-      const targetObject = new MessageFabric(json, connection)
-      const valid = targetObject.validate()
-      if (!valid) return connection.socket.send('invalid json')
-      targetObject.handle()
-    })
-  })
+  fastify.get(
+    '/',
+    {
+      websocket: true,
+      preHandler: [asyncStorageBinding, jwtGuard],
+    },
+    (connection) => {
+      connection.socket.on('message', (message) => {
+        const json = primaryValidation(message)
+        if (!json) return connection.socket.send('invalid json')
+        const targetObject = new MessageFabric(json, connection)
+        const valid = targetObject.validate()
+        if (!valid) return connection.socket.send('invalid data')
+        targetObject.handle()
+      })
+    }
+  )
 }

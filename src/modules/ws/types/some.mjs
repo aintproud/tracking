@@ -1,10 +1,8 @@
-import Ajv from 'ajv'
-const ajv = new Ajv()
+import HandlerPrototype from '../handlerPrototype.mjs'
 
-export default class SomeHandler {
+export default class SomeHandler extends HandlerPrototype {
   constructor(data, connection) {
-    this.data = data
-    this.connection = connection
+    super(data, connection)
     this.schema = {
       type: 'object',
       properties: {
@@ -13,9 +11,6 @@ export default class SomeHandler {
       required: ['key'],
       additionalProperties: false,
     }
-  }
-  validate() {
-    return ajv.validate(this.schema, this.data)
   }
   handle() {
     this.connection.socket.send(`success: ${JSON.stringify(this.data)}`)

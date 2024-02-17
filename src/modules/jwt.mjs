@@ -7,6 +7,6 @@ export function createToken(payload) {
 }
 
 export function verifyToken(payload) {
-    const { exp, iat, ...body } = jwt.verify(payload, secret)
-    return body
+  const { exp, iat, ...body } = jwt.verify(payload, secret)
+  return body
 }

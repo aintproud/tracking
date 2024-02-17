@@ -4,6 +4,31 @@ import logger from './modules/logger.mjs'
 import { OperationalError } from './modules/error.mjs'
 const app = fastify()
 
+app.register(import('@fastify/swagger'), {
+  swagger: {
+    info: {
+      title: 'Fastify JWT Example',
+      description: 'Fastify JWT Example',
+      version: '0.1.0',
+    },
+    securityDefinitions: {
+      bearerAuth: {
+        type: 'apiKey',
+        name: 'Authorization',
+        scheme: 'bearer',
+        bearerFormat: 'JWT',
+        in: 'header',
+      },
+    },
+  },
+})
+app.register(import('@fastify/swagger-ui'), {
+  routePrefix: '/docs',
+  uiConfig: {
+    docExpansion: 'list',
+    deepLinking: false,
+  },
+})
 app.register(import('@fastify/websocket'))
 app.register(import('./modules/ws/controller.mjs'))
 app.register(import('./modules/routes/login/controller.mjs'), {
