@@ -1,5 +1,5 @@
 import fastify from 'fastify'
-import config from './modules/config.mjs'
+import config from '../config.mjs'
 import logger from './modules/logger.mjs'
 import { OperationalError } from './modules/error.mjs'
 const app = fastify()
@@ -8,6 +8,9 @@ app.register(import('@fastify/websocket'))
 app.register(import('./modules/ws/controller.mjs'))
 app.register(import('./modules/routes/login/controller.mjs'), {
   prefix: 'login',
+})
+app.register(import('./modules/routes/register/controller.mjs'), {
+  prefix: 'register',
 })
 
 app.listen({ port: config.port }, (err, address) => {
