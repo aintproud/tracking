@@ -9,7 +9,7 @@ export class TablePrototype {
     return db(this.tableName)
   }
   static async insert(data) {
-    const [result] = await this.table.insert(data).returning('id')
+    const [result] = await this.table.insert(data).returning('*')
     return result
   }
   static async find(object) {
@@ -21,7 +21,7 @@ export class TablePrototype {
   static async update(object, data) {
     return this.table.where(object).update(data)
   }
-  static async findAll() {
-    return this.table
+  static async findAll(object) {
+    return this.table.where(object)
   }
 }

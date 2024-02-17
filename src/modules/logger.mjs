@@ -1,5 +1,5 @@
 import pino from 'pino'
-import config from '@root/config.mjs'
+import config from 'src/config.mjs'
 const transport =
   config.type === 'PROD'
     ? null

@@ -1,7 +1,7 @@
 import fastify from 'fastify'
-import config from '../config.mjs'
 import logger from './modules/logger.mjs'
 import { OperationalError } from './modules/error.mjs'
+import config from './config.mjs'
 const app = fastify()
 
 app.register(import('@fastify/swagger'), {
@@ -30,11 +30,13 @@ app.register(import('@fastify/swagger-ui'), {
   },
 })
 app.register(import('@fastify/websocket'))
-app.register(import('./modules/ws/controller.mjs'))
-app.register(import('./modules/routes/login/controller.mjs'), {
+app.register(import('./routes/ws/controller.mjs'), {
+  prefix: 'ws',
+})
+app.register(import('./routes/login/controller.mjs'), {
   prefix: 'login',
 })
-app.register(import('./modules/routes/register/controller.mjs'), {
+app.register(import('./routes/register/controller.mjs'), {
   prefix: 'register',
 })
 

@@ -5,13 +5,17 @@ TODO:
   <!-- - make auth -->
   <!-- - implement logger -->
   <!-- - implement operational errors and errors handling -->
-  - refactor knex using code
+  <!-- - refactor knex using code -->
   <!-- - make dev and prod envs -->
   <!-- - make e2e tests -->
   <!-- - make seeds -->
+  <!-- - refactor ws logic -->
+  <!-- * make swagger docs (mb for ws) -->
+  <!-- * make alias -->
+  <!-- - make location writing for concrete user -->
+  <!-- - switch files locations -->
+  - fill swagger
+  ? make postman collection
   - make ci/cd
   * make readme
-  - refactor ws logic
-  <!-- * make swagger docs (mb for ws) -->
   * make k8s
-  <!-- * make alias -->

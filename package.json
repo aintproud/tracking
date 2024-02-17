@@ -17,12 +17,10 @@
     "pino-pretty": "^10.3.1"
   },
   "aliases": {
-    "@data": "data",
-    "@src": "src",
-    "@test": "test",
-    "@root": ".",
-    "@db": "src/modules/db",
-    "@modules": "src/modules"
+    "data": "data",
+    "src": "src",
+    "test": "test",
+    "root": "."
   },
   "dependencies": {
     "@fastify/swagger": "^8.14.0",

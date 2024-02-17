@@ -1,7 +1,8 @@
-import { jwtGuard } from '../guards.mjs'
-import { asyncStorageBinding } from '../middlewares.mjs'
 import Ajv from 'ajv'
 import MessageFabric from './messageFabric.mjs'
+import { asyncStorageBinding } from 'src/modules/middlewares.mjs'
+import { jwtGuard } from 'src/modules/guards.mjs'
+import asyncLocalStorage from 'src/modules/async.mjs'
 const ajv = new Ajv()
 function primaryValidation(message) {
   try {
@@ -32,10 +33,11 @@ export default async function (fastify) {
       preHandler: [asyncStorageBinding, jwtGuard],
     },
     (connection) => {
+      const context = asyncLocalStorage.getStore()
       connection.socket.on('message', (message) => {
         const json = primaryValidation(message)
         if (!json) return connection.socket.send('invalid json')
-        const targetObject = new MessageFabric(json, connection)
+        const targetObject = new MessageFabric(json, context, connection)
         const valid = targetObject.validate()
         if (!valid) return connection.socket.send('invalid data')
         targetObject.handle()

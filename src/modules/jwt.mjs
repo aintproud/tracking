@@ -1,5 +1,5 @@
-import config from '../../config.mjs'
 import jwt from 'jsonwebtoken'
+import config from 'src/config.mjs'
 
 const { secret, exp } = config.jwt
 export function createToken(payload) {

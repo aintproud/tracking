@@ -2,12 +2,10 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@data": ["data"],
-      "@src": ["src"],
-      "@test": ["test"],
-      "@root": ["."],
-      "@db": ["src/modules/db"],
-      "@modules": ["src/modules"]
+      "data": ["data"],
+      "src": ["src"],
+      "test": ["test"],
+      "root": ["."]
     }
   }
 }

@@ -1,6 +1,7 @@
-import { createHash } from '../../utils.mjs'
-import User from '../../db/models/user.mjs'
-import { createToken } from '../../jwt.mjs'
+import User from 'src/modules/db/models/user.mjs'
+import { createToken } from 'src/modules/jwt.mjs'
+import { createHash } from 'src/modules/utils.mjs'
+
 export async function postRegisterHandler(req, res) {
   const { name, email, password } = req.body
   const password_hash = await createHash(password)

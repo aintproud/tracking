@@ -1,8 +1,9 @@
 import HandlerPrototype from '../handlerPrototype.mjs'
 
 export default class SomeHandler extends HandlerPrototype {
-  constructor(data, connection) {
+  constructor(data, context, connection) {
     super(data, connection)
+    this.context = context
     this.schema = {
       type: 'object',
       properties: {
