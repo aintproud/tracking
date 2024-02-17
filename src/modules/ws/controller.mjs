@@ -1,3 +1,5 @@
+import { jwtGuard } from '../guards.mjs'
+import { asyncStorageBinding } from '../middlewares.mjs'
 import Ajv from 'ajv'
 import MessageFabric from './messageFabric.mjs'
 const ajv = new Ajv()
@@ -23,7 +25,9 @@ function primaryValidation(message) {
 }
 
 export default async function (fastify) {
-  fastify.get('/', { websocket: true }, (connection) => {
+  fastify.get('/', { 
+    websocket: true, preHandler: [asyncStorageBinding,jwtGuard]
+   }, (connection) => {
     connection.socket.on('message', (message) => {
       const json = primaryValidation(message)
       if (!json) return connection.socket.send('wrong body')

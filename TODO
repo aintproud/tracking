@@ -5,6 +5,7 @@ TODO:
   <!-- - make auth -->
   <!-- - implement logger -->
   <!-- - implement operational errors and errors handling -->
+  - optimize knex usage
   - make dev and prod envs
   - make e2e tests
   - make seeds

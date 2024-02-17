@@ -13,8 +13,8 @@ export async function jwtGuard(req, res) {
     const body = verifyToken(req.headers.authorization)
     const context = asyncLocalStorage.getStore()
     context.body = body
-    console.log(context);
   } catch (error) {
-    return 'invalid json'
+    res.status(401)
+    throw new Error('Invalid token')
   }
 }
