@@ -1,11 +1,11 @@
-import Ajv from "ajv"
+import Ajv from 'ajv'
 import MessageFabric from './messageFabric.mjs'
 import classes from './classesLoader.mjs'
-import { createResponse } from "./wsUtils.mjs"
+import { createResponse } from './wsUtils.mjs'
 const ajv = new Ajv()
 
 export default class RunTime {
-  constructor(message,context, connecion) {
+  constructor(message, context, connecion) {
     this.context = context
     this.connecion = connecion
     this.message = message
@@ -41,28 +41,22 @@ export default class RunTime {
       proposes: classes.map((c) => c.type),
     }
   }
-  setHandler(){
-    this.handler = MessageFabric(this.json, this.context, this.connecion)
-  }
-  run(){
+  run() {
     this.json = this.primaryValidation(this.message)
     if (!this.json)
       return this.connecion.socket.send(
         createResponse(this.createPrimaryValidationErrorData(), true)
       )
-    this.setHandler()
-    if (!this.handler)
+    const handler = MessageFabric(this.json, this.context, this.connecion)
+    if (!handler)
       return this.connecion.socket.send(
-        createResponse(
-          this.createWrongTypeErrorData(),
-          true
-        )
+        createResponse(this.createWrongTypeErrorData(), true)
       )
-    const valid = this.handler.validate()
+    const valid = handler.validate()
     if (!valid)
       return this.connecion.socket.send(
-        createResponse(this.handler.createValidationErrorData(), true)
+        createResponse(handler.createValidationErrorData(), true)
       )
-    this.handler.handle()
+    handler.handle()
   }
 }
