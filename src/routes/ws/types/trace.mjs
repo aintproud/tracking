@@ -4,6 +4,9 @@ import db from 'src/modules/db/db.mjs'
 import { createResponse } from '../wsUtils.mjs'
 
 export default class TraceHandler extends HandlerPrototype {
+  static get type() {
+    return 'trace'
+  }
   constructor(data, context, connection) {
     super(data, context, connection, {
       type: 'object',

@@ -1,6 +1,9 @@
 import HandlerPrototype from '../handlerPrototype.mjs'
 
 export default class SomeHandler extends HandlerPrototype {
+  static get type() {
+    return 'some'
+  }
   constructor(data, context, connection) {
     super(data, context, connection, {
       type: 'object',

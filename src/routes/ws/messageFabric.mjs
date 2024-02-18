@@ -1,13 +1,6 @@
-import SomeHandler from './types/some.mjs'
-import TraceHandler from './types/trace.mjs'
-
-const router = {
-  some: SomeHandler,
-  trace: TraceHandler
+import classes from './classesLoader.mjs'
+export default function MessageFabric({ type, data }, context, connection) {
+  const TargetClass = classes.find((Handler) => Handler.type === type)
+  if (!TargetClass) return
+  return new TargetClass(data, context, connection)
 }
-
-export default function MessageFabric ({ type, data },context, connection) {
-  const targetClass = router[type] || SomeHandler
-  return new targetClass(data, context, connection)
-}
- 
