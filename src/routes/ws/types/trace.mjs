@@ -31,7 +31,6 @@ export default class TraceHandler extends HandlerPrototype {
       geometry: db.raw(`point(${longitude}, ${latitude})`),
       user_id: this.context.body.id,
     })
-    console.log(res)
     this.connection.socket.send(createResponse({ ok: true, res }))
   }
 }

@@ -17,7 +17,7 @@ export default class HandlerPrototype {
         description: `invalid type data format for type: ${this.constructor.type}`,
         schema: this.schema,
         recieved: this.data,
-      }
+      },
     }
   }
   validate() {

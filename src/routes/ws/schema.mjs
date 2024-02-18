@@ -18,7 +18,7 @@ export default {
     properties: {
       authorization: { type: 'string' },
     },
-    required: ['authorization']
+    required: ['authorization'],
   },
   response: {
     401: {},
