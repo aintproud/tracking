@@ -1,9 +1,9 @@
 import jwt from 'jsonwebtoken'
 import config from 'src/config.mjs'
 
-const { secret, exp } = config.jwt
+const { secret, daysToExpire } = config.jwt
 export function createToken(payload) {
-  return jwt.sign({ exp, ...payload }, secret)
+  return jwt.sign(payload, secret, { expiresIn: `${daysToExpire}d` })
 }
 
 export function verifyToken(payload) {

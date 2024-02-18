@@ -1,3 +1,4 @@
+import { randomBytes } from 'node:crypto'
 const { TYPE } = process.env
 
 export default {
@@ -10,7 +11,7 @@ export default {
         : 'postgresql://user:password@localhost:5432/postgres',
   },
   jwt: {
-    secret: 'secret',
-    exp: Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 7,
+    secret: TYPE === 'PROD' ? randomBytes(64) : 'test_sercret',
+    daysToExpire: 7,
   },
 }

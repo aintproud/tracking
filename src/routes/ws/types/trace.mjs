@@ -1,12 +1,11 @@
 import GeoData from 'src/modules/db/models/geodata.mjs'
 import HandlerPrototype from '../handlerPrototype.mjs'
 import db from 'src/modules/db/db.mjs'
+import { createResponse } from '../wsUtils.mjs'
 
 export default class TraceHandler extends HandlerPrototype {
   constructor(data, context, connection) {
-    super(data, connection)
-    this.context = context
-    this.schema = {
+    super(data, context, connection, {
       type: 'object',
       properties: {
         latitude: {
@@ -21,7 +20,7 @@ export default class TraceHandler extends HandlerPrototype {
         },
       },
       required: ['latitude', 'longitude'],
-    }
+    })
   }
   async handle() {
     const { latitude, longitude } = this.data
@@ -29,7 +28,7 @@ export default class TraceHandler extends HandlerPrototype {
       geometry: db.raw(`point(${longitude}, ${latitude})`),
       user_id: this.context.body.id,
     })
-    console.log(res);
-    this.connection.socket.send(`success: ${JSON.stringify(res)}`)
+    console.log(res)
+    this.connection.socket.send(createResponse({ ok: true, res }))
   }
 }

@@ -15,7 +15,8 @@ TODO:
   <!-- - make location writing for concrete user -->
   <!-- - switch files locations -->
   <!-- - fill swagger -->
-  
+  ! refactor, optimize, develop
+
   ? make postman collection
   - make ci/cd
   * make readme
