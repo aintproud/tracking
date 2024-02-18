@@ -11,14 +11,16 @@ export default class HandlerPrototype {
     this.connection = connection
     this.schema = schema
   }
+  get errors() {
+    return {
+      validation: {
+        description: `invalid type data format for type: ${this.constructor.type}`,
+        schema: this.schema,
+        recieved: this.data,
+      }
+    }
+  }
   validate() {
     return ajv.validate(this.schema, this.data)
-  }
-  createValidationErrorData() {
-    return {
-      description: `invalid type data format for type: ${this.constructor.type}`,
-      schema: this.schema,
-      recieved: this.data,
-    }
   }
 }

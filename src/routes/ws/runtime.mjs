@@ -19,43 +19,43 @@ export default class RunTime {
       additionalProperties: false,
     }
   }
+  get errors() {
+    return {
+      primaryValidation: {
+        description: 'invalid message format',
+        schema: this.primarySchema,
+        recieved: this.message,
+      },
+      wrongType: {
+        description: `invalid message type: ${this.json.type}`,
+        proposes: classes.map((c) => c.type),
+      },
+    }
+  }
   primaryValidation(message) {
     try {
       const json = JSON.parse(message)
       const valid = ajv.validate(this.primarySchema, json)
-      return !valid || json
+      return valid ? json : false
     } catch (e) {
       return false
-    }
-  }
-  createPrimaryValidationErrorData() {
-    return {
-      description: 'invalid message format',
-      schema: this.primarySchema,
-      recieved: this.message,
-    }
-  }
-  createWrongTypeErrorData() {
-    return {
-      description: `invalid message type: ${this.json.type}`,
-      proposes: classes.map((c) => c.type),
     }
   }
   run() {
     this.json = this.primaryValidation(this.message)
     if (!this.json)
       return this.connecion.socket.send(
-        createResponse(this.createPrimaryValidationErrorData(), true)
+        createResponse(this.errors.primaryValidation, true)
       )
     const handler = MessageFabric(this.json, this.context, this.connecion)
     if (!handler)
       return this.connecion.socket.send(
-        createResponse(this.createWrongTypeErrorData(), true)
+        createResponse(this.errors.wrongType, true)
       )
     const valid = handler.validate()
     if (!valid)
       return this.connecion.socket.send(
-        createResponse(handler.createValidationErrorData(), true)
+        createResponse(handler.errors.validation, true)
       )
     handler.handle()
   }
