@@ -1,6 +1,5 @@
 import fastify from 'fastify'
 import logger from './modules/logger.mjs'
-import { OperationalError } from './modules/error.mjs'
 import config from './config.mjs'
 const app = fastify()
 
@@ -47,16 +46,19 @@ app.listen({ port: config.port }, (err, address) => {
 
 process.on('uncaughtException', (err) => {
   logger.error(err)
-  if (!(err instanceof OperationalError)) {
-    process.exit(1)
-  }
+  process.exit(1)
 })
+let stopping
 process.on('SIGTERM', async () => {
+  if (stopping) return
+  stopping = true
   logger.warn('SIGTERM received')
   await app.close()
   process.exit(0)
 })
 process.on('SIGINT', async () => {
+  if (stopping) return
+  stopping = true
   logger.warn('SIGINT received')
   await app.close()
   process.exit(0)
