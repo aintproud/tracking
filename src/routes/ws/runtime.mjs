@@ -1,7 +1,6 @@
 import Ajv from 'ajv'
-import MessageFabric from './messageFabric.mjs'
 import classes from './classesLoader.mjs'
-import { createResponse } from './wsUtils.mjs'
+import { createResponse } from 'src/modules/utils.mjs'
 const ajv = new Ajv()
 
 export default class RunTime {
@@ -24,7 +23,7 @@ export default class RunTime {
       primaryValidation: {
         description: 'invalid message format',
         schema: this.primarySchema,
-        recieved: this.message,
+        recieved: this.json,
       },
       wrongType: {
         description: `invalid message type: ${this.json.type}`,
@@ -32,22 +31,29 @@ export default class RunTime {
       },
     }
   }
-  primaryValidation(message) {
+  primaryValidation() {
     try {
-      const json = JSON.parse(message)
+      const json = JSON.parse(this.message)
       const valid = ajv.validate(this.primarySchema, json)
       return valid ? json : false
     } catch (e) {
       return false
     }
   }
+  getHandler() {
+    const TargetClass = classes.find(
+      (Handler) => Handler.type === this.json.type
+    )
+    if (!TargetClass) return
+    return new TargetClass(this.json.data, this.context, this.connecion)
+  }
   run() {
-    this.json = this.primaryValidation(this.message)
+    this.json = this.primaryValidation()
     if (!this.json)
       return this.connecion.socket.send(
         createResponse(this.errors.primaryValidation, true)
       )
-    const handler = MessageFabric(this.json, this.context, this.connecion)
+    const handler = this.getHandler()
     if (!handler)
       return this.connecion.socket.send(
         createResponse(this.errors.wrongType, true)

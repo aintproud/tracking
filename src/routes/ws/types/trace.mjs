@@ -1,7 +1,7 @@
 import GeoData from 'src/modules/db/models/geodata.mjs'
 import HandlerPrototype from '../handlerPrototype.mjs'
 import db from 'src/modules/db/db.mjs'
-import { createResponse } from '../wsUtils.mjs'
+import { createResponse } from 'src/modules/utils.mjs'
 
 export default class TraceHandler extends HandlerPrototype {
   static get type() {

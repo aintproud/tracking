@@ -20,3 +20,10 @@ export async function verifyHash(password, hashedPassword) {
     })
   })
 }
+export function createResponse(data, isError = false) {
+  const response = {
+    data,
+    error: isError,
+  }
+  return JSON.stringify(response)
+}
