@@ -2,7 +2,7 @@ import { asyncStorageBinding } from 'src/modules/middlewares.mjs'
 import { jwtGuard } from 'src/modules/guards.mjs'
 import asyncLocalStorage from 'src/modules/async.mjs'
 import schema from './schema.mjs'
-import RunTime from './runtime.mjs'
+import RunTime from './websocket_logic/runtime.mjs'
 import logger from 'src/modules/logger.mjs'
 import { createResponse } from 'src/modules/utils.mjs'
 
