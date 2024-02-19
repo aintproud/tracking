@@ -3,6 +3,9 @@ import { jwtGuard } from 'src/modules/guards.mjs'
 import asyncLocalStorage from 'src/modules/async.mjs'
 import schema from './schema.mjs'
 import RunTime from './runtime.mjs'
+import logger from 'src/modules/logger.mjs'
+import { createResponse } from 'src/modules/utils.mjs'
+
 export default async function (fastify) {
   fastify.get(
     '/',
@@ -14,8 +17,15 @@ export default async function (fastify) {
     (connection) => {
       const context = asyncLocalStorage.getStore()
       connection.socket.on('message', (message) => {
-        const runTime = new RunTime(message, context, connection)
-        runTime.run()
+        try{
+          const runTime = new RunTime(message, context, connection)
+          runTime.run()
+        } catch (e) {
+          logger.error(e)
+          connection.socket.send(
+            createResponse({ description: 'something wrong with server' }, true)
+          )
+        }
       })
     }
   )

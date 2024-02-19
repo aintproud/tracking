@@ -2,6 +2,7 @@ import GeoData from 'src/modules/db/models/geodata.mjs'
 import HandlerPrototype from '../handlerPrototype.mjs'
 import db from 'src/modules/db/db.mjs'
 import { createResponse } from 'src/modules/utils.mjs'
+import logger from 'src/modules/logger.mjs'
 
 export default class TraceHandler extends HandlerPrototype {
   static get type() {
@@ -26,11 +27,18 @@ export default class TraceHandler extends HandlerPrototype {
     })
   }
   async handle() {
-    const { latitude, longitude } = this.data
-    const res = await GeoData.insert({
-      geometry: db.raw(`point(${longitude}, ${latitude})`),
-      user_id: this.context.body.id,
-    })
-    this.connection.socket.send(createResponse({ ok: true, res }))
+    try {
+      const { latitude, longitude } = this.data
+      const res = await GeoData.insert({
+        geometry: db.raw(`point(${longitude}, ${latitude})`),
+        user_id: this.context.body.id,
+      })
+      return this.connection.socket.send(createResponse({ res }))
+    } catch (error) {
+      logger.error(error)
+      return this.connection.socket.send(
+        createResponse({ description: 'something wrong with database' }, true)
+      )
+    }
   }
 }
