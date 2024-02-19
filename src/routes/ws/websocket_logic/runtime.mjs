@@ -4,25 +4,25 @@ import { createResponse } from 'src/modules/utils.mjs'
 const ajv = new Ajv()
 
 export default class RunTime {
+  static primarySchema = {
+    type: 'object',
+    properties: {
+      type: { type: 'string' },
+      data: { type: 'object' },
+    },
+    required: ['type', 'data'],
+    additionalProperties: false,
+  }
   constructor(message, context, connecion) {
     this.context = context
     this.connecion = connecion
     this.message = message
-    this.primarySchema = {
-      type: 'object',
-      properties: {
-        type: { type: 'string' },
-        data: { type: 'object' },
-      },
-      required: ['type', 'data'],
-      additionalProperties: false,
-    }
   }
   get errors() {
     return {
       primaryValidation: {
         description: 'invalid message format',
-        schema: this.primarySchema,
+        schema: this.constructor.primarySchema,
         recieved: this.json,
       },
       wrongType: {
@@ -34,7 +34,7 @@ export default class RunTime {
   primaryValidation() {
     try {
       const json = JSON.parse(this.message)
-      const valid = ajv.validate(this.primarySchema, json)
+      const valid = ajv.validate(this.constructor.primarySchema, json)
       return valid ? json : false
     } catch (e) {
       return false

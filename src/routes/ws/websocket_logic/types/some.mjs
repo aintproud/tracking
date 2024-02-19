@@ -1,18 +1,17 @@
 import HandlerPrototype from '../handlerPrototype.mjs'
 
 export default class SomeHandler extends HandlerPrototype {
-  static get type() {
-    return 'some'
+  static type = 'some'
+  static schema = {
+    type: 'object',
+    properties: {
+      key: { type: 'string' },
+    },
+    required: ['key'],
+    additionalProperties: false,
   }
   constructor(data, context, connection) {
-    super(data, context, connection, {
-      type: 'object',
-      properties: {
-        key: { type: 'string' },
-      },
-      required: ['key'],
-      additionalProperties: false,
-    })
+    super(data, context, connection)
   }
   handle() {
     this.connection.socket.send(`success: ${JSON.stringify(this.data)}`)
