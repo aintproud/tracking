@@ -1,6 +1,6 @@
 declare namespace _default {
     let client: string;
-    let connection: any;
+    let connection: string;
     namespace pool {
         let min: number;
         let max: number;

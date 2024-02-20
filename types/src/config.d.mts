@@ -8,6 +8,13 @@ declare namespace _default {
         let secret: string | Buffer;
         let daysToExpire: number;
     }
+    export namespace email {
+        let host: string;
+        namespace auth {
+            let user: string;
+            let pass: string;
+        }
+    }
 }
 export default _default;
 declare const TYPE: string;

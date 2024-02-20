@@ -1,4 +1,4 @@
-import app from '@src/index.mjs'
+import app from 'src/index.mjs'
 import supertest from 'supertest'
 test('GET /', async () => {
   await app.ready()

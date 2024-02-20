@@ -38,6 +38,9 @@ app.register(import('./routes/login/controller.mjs'), {
 app.register(import('./routes/register/controller.mjs'), {
   prefix: 'register',
 })
+app.register(import('./routes/verificate/controller.mjs'), {
+  prefix: 'verificate',
+})
 
 app.listen({ port: config.port }, (err, address) => {
   if (err) console.error(err)

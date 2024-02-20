@@ -14,9 +14,17 @@ export const postRegisterSchema = {
     200: {
       type: 'object',
       properties: {
-        token: { type: 'string' },
+        message: { type: 'string' },
       },
-      required: ['token'],
+      required: ['message'],
+      additionalProperties: false,
+    },
+    403: {
+      type: 'object',
+      properties: {
+        message: { type: 'string' },
+      },
+      required: ['message'],
       additionalProperties: false,
     },
     409: {

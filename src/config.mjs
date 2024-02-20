@@ -14,4 +14,11 @@ export default {
     secret: TYPE === 'PROD' ? randomBytes(64) : 'test_sercret',
     daysToExpire: 7,
   },
+  email: {
+    host: 'smtp.yandex.ru',
+    auth: {
+      user: 'iks.mr2016@yandex.ru',
+      pass: 'eyiicflusdlcbxrh',
+    },
+  }
 }
