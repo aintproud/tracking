@@ -1,0 +1,16 @@
+export default class SomeHandler extends HandlerPrototype {
+    static type: string;
+    static schema: {
+        type: string;
+        properties: {
+            key: {
+                type: string;
+            };
+        };
+        required: string[];
+        additionalProperties: boolean;
+    };
+    handle(): void;
+}
+import HandlerPrototype from '../handlerPrototype.mjs';
+//# sourceMappingURL=some.d.mts.map
