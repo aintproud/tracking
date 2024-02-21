@@ -6,6 +6,7 @@ import RunTime from './websocket_logic/runtime.mjs'
 import logger from 'src/modules/logger.mjs'
 import { createResponse } from 'src/modules/utils.mjs'
 
+/**  @type {import('fastify').FastifyPluginAsync<>} */
 export default async function (fastify) {
   fastify.get(
     '/',

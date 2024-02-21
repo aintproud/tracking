@@ -2,6 +2,13 @@ import User from 'src/modules/db/models/user.mjs'
 import { createToken } from 'src/modules/jwt.mjs'
 import { createHash } from 'src/modules/utils.mjs'
 
+/**
+ * Registers a new user in the database.
+ *
+ * @param {import('fastify').FastifyRequest} req - The Fastify request object
+ * @param {import('fastify').FastifyReply} res - The Fastify reply object
+ * @return {Object} An object containing the authentication token
+ */
 export async function postRegisterHandler(req, res) {
   const { name, email, password } = req.body
   const password_hash = await createHash(password)
