@@ -8,6 +8,7 @@ export default class HandlerPrototype {
   static get schema() {
     throw new Error('The schema must be defined for the model.')
   }
+  /** @param {import('@fastify/websocket').SocketStream} connection */
   constructor(data, context, connection) {
     this.data = data
     this.context = context

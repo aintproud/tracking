@@ -6,9 +6,8 @@ const app = fastify()
 app.register(import('@fastify/swagger'), {
   swagger: {
     info: {
-      title: 'Fastify JWT Example',
-      description: 'Fastify JWT Example',
-      version: '0.1.0',
+      title: 'Tracker api',
+      description: 'API for handling position of people in space',
     },
     securityDefinitions: {
       bearerAuth: {

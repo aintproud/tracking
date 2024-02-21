@@ -17,6 +17,7 @@ export default class TraceHandler extends HandlerPrototype {
         required: string[];
         additionalProperties: boolean;
     };
+    constructor(data: any, context: any, connection: any);
     handle(): Promise<any>;
 }
 import HandlerPrototype from '../handlerPrototype.mjs';

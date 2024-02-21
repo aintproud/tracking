@@ -10,6 +10,7 @@ export default class SomeHandler extends HandlerPrototype {
         required: string[];
         additionalProperties: boolean;
     };
+    constructor(data: any, context: any, connection: any);
     handle(): void;
 }
 import HandlerPrototype from '../handlerPrototype.mjs';
