@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/jsonwebtoken": "^9.0.5",
     "eslint": "^8.56.0",
     "nodemon": "^3.0.3",
     "pino-pretty": "^10.3.1"

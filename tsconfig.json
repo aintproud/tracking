@@ -2,20 +2,17 @@
   // Change this to match your project
   "include": ["**/*.mjs"],
   "compilerOptions": {
-    // Tells TypeScript to read JS files, as
-    // normally they are ignored as source files
+    "baseUrl": ".",
+    "paths": {
+      "data": ["data"],
+      "src": ["src"],
+      "test": ["test"],
+      "root": ["."]
+    },
     "allowJs": true,
-    // Generate d.ts files
     "declaration": true,
-    // This compiler run should
-    // only output d.ts files
     "emitDeclarationOnly": true,
-    // Types should go into this directory.
-    // Removing this would place the .d.ts files
-    // next to the .js files
     "outDir": "types",
-    // go to js file when using IDE functions like
-    // "Go to Definition" in VSCode
     "declarationMap": true
   }
 }
