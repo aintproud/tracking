@@ -10,5 +10,5 @@ declare namespace _default {
     }
 }
 export default _default;
-declare const TYPE: string;
+declare const TYPE: string | undefined;
 //# sourceMappingURL=config.d.mts.map
