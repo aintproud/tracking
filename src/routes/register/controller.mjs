@@ -1,13 +1,7 @@
-import { postRegisterSchema } from './schemas.mjs'
-import { postRegisterHandler } from './service.mjs'
+import schemas from './schemas.mjs'
+import service from './service.mjs'
 
 /**  @type {import('fastify').FastifyPluginAsync<>} */
 export default async function (fastify) {
-  fastify.post(
-    '/',
-    {
-      schema: postRegisterSchema,
-    },
-    postRegisterHandler
-  )
+  fastify.post('/', { schema: schemas.post }, service.post)
 }

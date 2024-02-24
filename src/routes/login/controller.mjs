@@ -1,13 +1,7 @@
-import { postLoginSchema } from './schemas.mjs'
-import { getLoginHandler } from './service.mjs'
+import schemas from './schemas.mjs'
+import service from './service.mjs'
 
 /**  @type {import('fastify').FastifyPluginAsync<>} */
 export default async function (fastify) {
-  fastify.post(
-    '/',
-    {
-      schema: postLoginSchema,
-    },
-    getLoginHandler
-  )
+  fastify.post('/', { schema: schemas.post }, service.post)
 }

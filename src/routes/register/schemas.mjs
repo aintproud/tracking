@@ -1,31 +1,33 @@
-export const postRegisterSchema = {
-  summary: 'Register a new user',
-  body: {
-    type: 'object',
-    properties: {
-      name: { type: 'string' },
-      email: { type: 'string', format: 'email' },
-      password: { type: 'string' },
-    },
-    required: ['email', 'password', 'name'],
-    additionalProperties: false,
-  },
-  response: {
-    200: {
+export default {
+  post: {
+    summary: 'Register a new user',
+    body: {
       type: 'object',
       properties: {
-        token: { type: 'string' },
+        name: { type: 'string' },
+        email: { type: 'string', format: 'email' },
+        password: { type: 'string' },
       },
-      required: ['token'],
+      required: ['email', 'password', 'name'],
       additionalProperties: false,
     },
-    409: {
-      type: 'object',
-      properties: {
-        error: { type: 'string' },
+    response: {
+      200: {
+        type: 'object',
+        properties: {
+          token: { type: 'string' },
+        },
+        required: ['token'],
+        additionalProperties: false,
       },
-      required: ['error'],
-      additionalProperties: false,
+      409: {
+        type: 'object',
+        properties: {
+          error: { type: 'string' },
+        },
+        required: ['error'],
+        additionalProperties: false,
+      },
     },
   },
 }
