@@ -13,6 +13,9 @@ export default class RunTime {
     required: ['type', 'data'],
     additionalProperties: false,
   }
+  /**
+   * @param {import('@fastify/websocket').SocketStream} connecion 
+   */
   constructor(message, context, connecion) {
     this.context = context
     this.connecion = connecion
