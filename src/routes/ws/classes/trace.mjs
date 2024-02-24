@@ -1,5 +1,5 @@
 import GeoData from 'src/modules/db/models/geodata.mjs'
-import HandlerPrototype from '../handlerPrototype.mjs'
+import HandlerPrototype from 'src/modules/ws/handlerPrototype.mjs'
 import db from 'src/modules/db/db.mjs'
 import { createResponse } from 'src/modules/utils.mjs'
 import logger from 'src/modules/logger.mjs'

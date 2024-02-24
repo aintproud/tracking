@@ -1,5 +1,5 @@
 import { readdirSync } from 'node:fs'
-const folder = 'types'
+const folder = 'classes'
 const files = readdirSync(`${import.meta.dirname}/${folder}`)
 const filteredFiles = files.filter((file) => file.endsWith('.mjs'))
 

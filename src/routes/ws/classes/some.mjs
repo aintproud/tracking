@@ -1,4 +1,4 @@
-import HandlerPrototype from '../handlerPrototype.mjs'
+import HandlerPrototype from 'src/modules/ws/handlerPrototype.mjs'
 
 export default class SomeHandler extends HandlerPrototype {
   static type = 'some'
