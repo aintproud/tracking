@@ -11,7 +11,7 @@ export async function verifyRoles(roles) {
 export async function jwtGuard(req, res) {
 	try {
 		const body = verifyToken(req.headers.authorization)
-		if (!body.id) return res.status(401).send('jwt payload error')
+		if (!body.id) return res.status(401).send('jwt payload content error')
 		const context = asyncLocalStorage.getStore()
 		context.body = body
 	} catch (error) {

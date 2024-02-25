@@ -6,13 +6,11 @@ export default {
 	post: async (req, res) => {
 		const { email, password } = req.body
 		const user = await User.find({ email })
-		if (!user) {
+		if (!user || !(await verifyHash(password, user.password_hash))) {
 			return res.status(401).send('Invalid credentials')
 		}
-		if (!(await verifyHash(password, user.password_hash))) {
-			return res.status(401).send('Invalid credentials')
-		}
-		const token = createToken(user)
+		const payload = { id: user.id }
+		const token = createToken(payload)
 		return { token }
 	},
 }
