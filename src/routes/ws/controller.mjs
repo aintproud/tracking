@@ -21,9 +21,6 @@ export default async function (fastify) {
 					},
 					required: ['authorization'],
 				},
-				response: {
-					401: {},
-				},
 			},
 			preHandler: [asyncStorageBinding, jwtGuard],
 		},

@@ -11,10 +11,10 @@ export async function verifyRoles(roles) {
 export async function jwtGuard(req, res) {
 	try {
 		const body = verifyToken(req.headers.authorization)
+		if (!body.id) return res.status(401).send('jwt payload error')
 		const context = asyncLocalStorage.getStore()
 		context.body = body
 	} catch (error) {
-		res.status(401)
-		throw new Error('Invalid token')
+		return res.status(401).send('jwt verify error')
 	}
 }

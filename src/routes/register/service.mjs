@@ -8,8 +8,7 @@ export default {
 		const password_hash = await createHash(password)
 		const exists = await User.table.where({ email }).orWhere({ name })
 		if (exists.length > 0) {
-			res.status(409)
-			throw new Error('User already exists')
+			return res.status(409).send('User already exists')
 		}
 		const result = await User.insert({ name, email, password_hash })
 		return { token: createToken(result) }
