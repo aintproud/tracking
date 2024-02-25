@@ -42,6 +42,10 @@ app.listen({ port: config.port }, (err, address) => {
 	if (err) console.error(err)
 	logger.info(`Server listening on ${address}`)
 })
+app.setErrorHandler(async (error, req, res) => {
+	logger.error(error)
+	return res.status(500)
+})
 
 process.on('uncaughtException', (err) => {
 	logger.error(err)
