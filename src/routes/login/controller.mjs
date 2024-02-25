@@ -1,4 +1,3 @@
-import logger from 'src/modules/logger.mjs'
 import schemas from './schemas.mjs'
 import service from './service.mjs'
 
