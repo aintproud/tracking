@@ -1,5 +1,4 @@
 {
-
   "include": ["**/*.mjs"],
   "compilerOptions": {
     "target": "ESNext",
@@ -9,9 +8,7 @@
     "skipLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "data": ["data"],
       "src": ["src"],
-      "test": ["test"],
       "root": ["."]
     },
     "allowJs": true,

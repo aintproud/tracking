@@ -1,9 +1,8 @@
 import Ajv from 'ajv'
 import { createResponse } from 'src/modules/utils.mjs'
-import runtime from '../../routes/ws/runtime.mjs'
 const ajv = new Ajv()
 
-export default class RuntimePrototype {
+export default class Runtime {
   constructor(classes) {
     this.classes = classes
     this.primarySchema = {
