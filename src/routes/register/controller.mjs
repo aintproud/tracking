@@ -3,5 +3,5 @@ import service from './service.mjs'
 
 /**  @type {import('fastify').FastifyPluginAsync<>} */
 export default async function (fastify) {
-  fastify.post('/', { schema: schemas.post }, service.post)
+	fastify.post('/', { schema: schemas.post }, service.post)
 }

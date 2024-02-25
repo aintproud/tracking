@@ -1,20 +1,20 @@
 {
-  "include": ["**/*.mjs"],
-  "compilerOptions": {
-    "target": "ESNext",
-    "moduleResolution": "node",
-    "strict": true,
-    "preserveWatchOutput": true,
-    "skipLibCheck": true,
-    "baseUrl": ".",
-    "paths": {
-      "src": ["src"],
-      "root": ["."]
-    },
-    "allowJs": true,
-    "declaration": true,
-    "emitDeclarationOnly": true,
-    "outDir": "types",
-    "declarationMap": true
-  }
+	"include": ["**/*.mjs"],
+	"compilerOptions": {
+		"target": "ESNext",
+		"moduleResolution": "node",
+		"strict": true,
+		"preserveWatchOutput": true,
+		"skipLibCheck": true,
+		"baseUrl": ".",
+		"paths": {
+			"src": ["src"],
+			"root": ["."]
+		},
+		"allowJs": true,
+		"declaration": true,
+		"emitDeclarationOnly": true,
+		"outDir": "types",
+		"declarationMap": true
+	}
 }

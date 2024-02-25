@@ -7,38 +7,41 @@ import runtime from './runtime.mjs'
 
 /**  @type {import('fastify').FastifyPluginAsync<>} */
 export default async function (fastify) {
-  fastify.get(
-    '/',
-    {
-      websocket: true,
-      schema: {
-        summary: 'Websocket endpoint',
-        description: runtime.docs,
-        headers: {
-          type: 'object',
-          properties: {
-            authorization: { type: 'string' },
-          },
-          required: ['authorization'],
-        },
-        response: {
-          401: {},
-        },
-      },
-      preHandler: [asyncStorageBinding, jwtGuard],
-    },
-    (connection) => {
-      const context = asyncLocalStorage.getStore()
-      connection.socket.on('message', (message) => {
-        try {
-          runtime.run(message, context, connection)
-        } catch (e) {
-          logger.error(e)
-          connection.socket.send(
-            createResponse({ description: 'something wrong with server' }, true)
-          )
-        }
-      })
-    }
-  )
+	fastify.get(
+		'/',
+		{
+			websocket: true,
+			schema: {
+				summary: 'Websocket endpoint',
+				description: runtime.docs,
+				headers: {
+					type: 'object',
+					properties: {
+						authorization: { type: 'string' },
+					},
+					required: ['authorization'],
+				},
+				response: {
+					401: {},
+				},
+			},
+			preHandler: [asyncStorageBinding, jwtGuard],
+		},
+		(connection) => {
+			const context = asyncLocalStorage.getStore()
+			connection.socket.on('message', (message) => {
+				try {
+					runtime.run(message, context, connection)
+				} catch (e) {
+					logger.error(e)
+					connection.socket.send(
+						createResponse(
+							{ description: 'something wrong with server' },
+							true,
+						),
+					)
+				}
+			})
+		},
+	)
 }

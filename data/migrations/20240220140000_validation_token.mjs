@@ -3,10 +3,10 @@
  * @returns { Promise<void> }
  */
 export const up = async (knex) => {
-  return knex.schema.createTable('validation_token', (table) => {
-    table.integer('user_id').unsigned().references('id').inTable('users')
-    table.string('token')
-  })
+	return knex.schema.createTable('validation_token', (table) => {
+		table.integer('user_id').unsigned().references('id').inTable('users')
+		table.string('token')
+	})
 }
 
 /**
@@ -14,5 +14,5 @@ export const up = async (knex) => {
  * @returns { Promise<void> }
  */
 export const down = async (knex) => {
-  return knex.schema.dropTable('validation_token')
+	return knex.schema.dropTable('validation_token')
 }
