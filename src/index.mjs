@@ -44,7 +44,7 @@ app.listen({ port: config.port }, (err, address) => {
 })
 app.setErrorHandler(async (error, req, res) => {
 	logger.error(error)
-	return res.status(500)
+	return res.status(500).send('Internal server error')
 })
 
 process.on('uncaughtException', (err) => {
