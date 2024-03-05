@@ -10,7 +10,7 @@ export default {
 		if (exists.length > 0) {
 			return res.status(409).send('User already exists')
 		}
-		const result = await User.insert({ name, email, password_hash })
-		return { token: createToken(result) }
+		const user = await User.insert({ name, email, password_hash })
+		return { token: createToken({ id: user.id }) }
 	},
 }
