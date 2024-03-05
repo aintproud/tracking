@@ -6,8 +6,12 @@
   "scripts": {
     "start": "node --loader esm-module-alias/loader --no-warnings src/index.mjs",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --config ./test/jest.config.json",
-    "dev": "nodemon --experimental-modules --loader esm-module-alias/loader --no-warnings src/index.mjs",
-    "fmt": "prettier --write ."
+    "dev": "npx nodemon --experimental-modules --loader esm-module-alias/loader --no-warnings src/index.mjs",
+    "format": "npx prettier --write .",
+    "lint": "npx eslint . --ext .mjs",
+    "migrate": "npx knex migrate:latest",
+    "drop": "npx knex migrate:rollback",
+    "seed": "npx knex seed:run --specific=user.mjs && npx knex seed:run --specific=geodata.mjs"
   },
   "keywords": [],
   "author": "",
