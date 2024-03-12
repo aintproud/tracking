@@ -60,13 +60,13 @@ ${'```\n'}${JSON.stringify(
 			)
 		const targetClass = this.getTargetClass()
 		if (!targetClass)
-			return this.connection.socket.send(
+			return connection.socket.send(
 				createResponse(this.errors.wrongType, true),
 			)
 		const handler = new targetClass(this.json.data, context, connection)
 		const valid = handler.validate()
 		if (!valid)
-			return this.connection.socket.send(
+			return connection.socket.send(
 				createResponse(handler.errors.validation, true),
 			)
 		handler.handle()

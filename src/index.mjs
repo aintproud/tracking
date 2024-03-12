@@ -1,7 +1,9 @@
 import fastify from 'fastify'
 import logger from './modules/logger.mjs'
 import config from './config.mjs'
-const app = fastify()
+const app = fastify({
+	logger,
+})
 
 app.register(import('@fastify/swagger'), {
 	swagger: {
@@ -39,7 +41,7 @@ app.register(import('./routes/register/controller.mjs'), {
 })
 
 app.listen({ port: config.port }, (err, address) => {
-	if (err) console.error(err)
+	if (err) logger.error(err)
 	logger.info(`Server listening on ${address}`)
 })
 
