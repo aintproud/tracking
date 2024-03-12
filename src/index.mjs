@@ -42,24 +42,20 @@ app.listen({ port: config.port }, (err, address) => {
 	if (err) console.error(err)
 	logger.info(`Server listening on ${address}`)
 })
-app.setErrorHandler(async (error, req, res) => {
-	logger.error(error)
-	return res.status(500).send('Internal server error')
-})
 
 process.on('uncaughtException', (err) => {
 	logger.error(err)
 	process.exit(1)
 })
 let stopping
-process.on('SIGTERM', async () => {
+process.once('SIGTERM', async () => {
 	if (stopping) return
 	stopping = true
 	logger.warn('SIGTERM received')
 	await app.close()
 	process.exit(0)
 })
-process.on('SIGINT', async () => {
+process.once('SIGINT', async () => {
 	if (stopping) return
 	stopping = true
 	logger.warn('SIGINT received')
