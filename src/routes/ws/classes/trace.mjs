@@ -29,11 +29,10 @@ export default class TraceHandler extends HandlerPrototype {
 	async handle() {
 		try {
 			const { latitude, longitude } = this.data
-			const res = await GeoData.insert({
-				geometry: db.raw(`point(${longitude}, ${latitude})`),
-				user_id: this.context.body.id,
+			const geodata = await GeoData.write({
+				latitude, longitude, user_id: this.context.body.id,
 			})
-			return this.connection.socket.send(createResponse({ res }))
+			return this.connection.socket.send(createResponse({ geodata }))
 		} catch (error) {
 			logger.error(error)
 			return this.connection.socket.send(
