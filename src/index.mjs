@@ -1,9 +1,8 @@
 import fastify from 'fastify'
 import logger from './modules/logger.mjs'
 import config from './config.mjs'
-const app = fastify({
-	logger,
-})
+import OperationalError from './modules/errors.mjs'
+const app = fastify()
 
 app.register(import('@fastify/swagger'), {
 	swagger: {
@@ -41,28 +40,28 @@ app.register(import('./routes/register/controller.mjs'), {
 })
 
 app.listen({ port: config.port }, (err, address) => {
-	if (err) logger.error(err)
-	logger.info(`Server listening on ${address}`)
+	if (err) {
+		logger.error(err)
+		process.exit(1)
+	}
+	logger.info(`server listening on ${address}`)
 })
-
+app.setErrorHandler((error, req, res) => {
+	logger.error(error)
+	if (error instanceof OperationalError) {
+		return res.status(error.httpCode).send(error.message)
+	}
+	return res.status(500).send('Something went wrong')
+})
 process.on('uncaughtException', (err) => {
-	logger.error(err)
+	logger.error(err, 'uncaughtException')
 	process.exit(1)
 })
-let stopping
-process.once('SIGTERM', async () => {
-	if (stopping) return
-	stopping = true
-	logger.warn('SIGTERM received')
+const stop = async () => {
+	logger.warn('app closing')
 	await app.close()
 	process.exit(0)
-})
-process.once('SIGINT', async () => {
-	if (stopping) return
-	stopping = true
-	logger.warn('SIGINT received')
-	await app.close()
-	process.exit(0)
-})
-
+}
+process.once('SIGTERM', stop)
+process.once('SIGINT', stop)
 export default app
