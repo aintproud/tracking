@@ -18,6 +18,6 @@ TODO:
   ! refactor, optimize, develop
 
   ? make postman collection
+  ? make k8s
   - make ci/cd
   * make readme
-  * make k8s
